@@ -49,3 +49,9 @@ class Dataset:
             test_size=validate_size,
             random_state=self.seed
         )
+
+    def transform_text_values(self, trans_dict):
+        for column, mapping in trans_dict.items():
+            if column in self.full_dataset.columns:
+                self.full_dataset[column].replace(mapping, inplace=True)
+
