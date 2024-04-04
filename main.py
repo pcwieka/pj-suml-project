@@ -7,6 +7,7 @@ cols_to_normalize = []
 cols_to_remove = []
 dataset.remove_columns(cols_to_remove)
 dataset.normalize(cols_to_normalize)
+dataset.split_data()
 
 # Use following for train/test/validate
 # dataset.full_dataset
