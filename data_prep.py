@@ -27,7 +27,7 @@ class Dataset:
         q3 = self.full_dataset.quantile(0.75)
         iqr = q3-q1
         outliers = (self.full_dataset < (q1 - 1.5 * iqr)) | (self.full_dataset > (q3 + 1.5 * iqr))
-        self.full_dataset = self.full_dataset[~outliers.any(axis=0)]
+        self.full_dataset = self.full_dataset[~outliers.any(axis=1)]
 
     def remove_columns(self, cols_to_remove):
         self.full_dataset.drop(cols_to_remove)
