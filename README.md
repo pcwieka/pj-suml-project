@@ -1,64 +1,58 @@
 # PJA_ASI_12c_GR3 - Instrukcja Instalacji Środowiska
 
-Projekt wykorzystuje Pythona w wersji 3.9.6
+# Instalacja Conda na Windows, Linux, i MacOS
 
-## Instalacja Minicondy
+Conda to zarządca pakietów i środowisk, który ułatwia instalację, uruchamianie i aktualizację pakietów oraz ich zależności. Jest on szczególnie przydatny w społecznościach Data Science i Machine Learning.
 
-### Windows:
+## Instalacja na Windows
 
-1. Odwiedź stronę [Minicondy](https://docs.anaconda.com/free/miniconda/index.html) i pobierz instalator dla Windows.
-2. Wybierz odpowiedni instalator dla swojej wersji systemu (32-bit lub 64-bit) oraz pożądanej wersji Pythona (3.9.6).
-3. Uruchom pobrany plik `.exe` i postępuj zgodnie z instrukcjami na ekranie, aby zakończyć instalację. Podczas instalacji zwróć uwagę na opcję dodania Minicondy do zmiennej środowiskowej `PATH` (opcjonalne).
+1. Pobierz instalator Anaconda dla Windows z [oficjalnej strony](https://www.anaconda.com/products/individual).
+2. Uruchom pobrany plik `.exe` i postępuj zgodnie z instrukcjami instalatora.
+3. Zaleca się pozostawienie opcji dodania Anacony do zmiennej środowiskowej PATH odznaczonej, ale upewnij się, że zaznaczyłeś opcję zarejestrowania Anacondy jako domyślnej wersji Pythona.
 
-### Linux:
+## Instalacja na Linux
 
-Wykonaj w terminalu:
+1. Pobierz odpowiedni instalator skryptowy Anaconda dla Linuxa z [oficjalnej strony](https://www.anaconda.com/products/individual).
+2. Otwórz terminal i przejdź do katalogu, w którym został pobrany instalator.
+3. Uruchom skrypt instalacyjny przy użyciu polecenia `bash Anaconda3-2020.02-Linux-x86_64.sh`, zastępując nazwę pliku aktualną wersją pobranego instalatora.
+4. Postępuj zgodnie z instrukcjami wyświetlanymi w terminalu.
 
-```bash
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-# lub, jeśli nie masz wget:
-curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+## Instalacja na MacOS
 
-chmod +x Miniconda3-latest-Linux-x86_64.sh
-./Miniconda3-latest-Linux-x86_64.sh
-```
+1. Pobierz instalator Anaconda dla MacOS z [oficjalnej strony](https://www.anaconda.com/products/individual).
+2. Możesz wybrać wersję graficzną instalatora lub instalator lini poleceń. Dla instalatora lini poleceń, otwórz terminal, przejdź do folderu z pobranym instalatorem i uruchom go za pomocą `bash Anaconda3-2020.02-MacOSX-x86_64.sh`, dostosowując nazwę do wersji instalatora.
+3. Postępuj zgodnie z instrukcjami instalatora.
 
-### macOS:
+## Podstawowe polecenia Conda
 
-W terminalu wykonaj:
+Po zainstalowaniu Conda, możesz użyć poniższych poleceń do zarządzania środowiskami i pakietami:
 
-```bash
-curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
-chmod +x Miniconda3-latest-MacOSX-x86_64.sh
-./Miniconda3-latest-MacOSX-x86_64.sh
-```
+- Sprawdź wersję Conda:
+  `conda --version`
 
-## Sprawdzenie Wersji Condy
+- Przejdź do katalogu Twojego projektu:
+  `cd ścieżka/do/twojego/projektu`
 
-Po instalacji sprawdź wersję Condy:
+- Utwórz środowisko z pliku `environment.yml`:
+  `conda env create -f environment.yml`
 
-conda --version
+- Aktywuj środowisko:
+  `conda activate nazwa_środowiska`
 
-## Przygotowanie Środowiska
+- Wyświetl listę zainstalowanych pakietów w aktywnym środowisku:
+`conda list`
 
-### Przygotowanie Środowiska Conda
+- Zaktualizuj Conda do najnowszej wersji:
+`conda update conda`
 
-W terminalu przejdź do katalogu projektu:
+## Korzystanie z Conda Forge
 
-cd nazwa-repozytorium
+Conda Forge to społecznościowe repozytorium pakietów dla Conda. Aby zainstalować pakiet z Conda Forge, użyj:
 
-Aktywuj utworzone środowisko:
+`conda install -c conda-forge nazwa_pakietu`
 
-conda env create -f environment.yml
+## Instalacja nowych bibliotek
 
-conda activate nazwasrodowiska
+Conda instalacja biblioteki:
 
-conda list
-
-### Sprawdź zainstalowane pakiety:
-
-conda list
-
-## Aktualizacja Condy
-
-conda update conda
+`conda install nazwa_biblioteki`
