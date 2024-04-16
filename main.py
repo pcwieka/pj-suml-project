@@ -1,8 +1,16 @@
 from data_prep import Dataset
+from helpers.parse_args import parse_args
 
+args = parse_args()
 
-# prepare dataset
-dataset = Dataset('ObesityDataSet.csv')
+# prepare dataset using arguments
+dataset = Dataset(
+    filename=args.filename,
+    train=args.train_ratio,
+    test=args.test_ratio,
+    validation=args.validation_ratio,
+    seed=args.seed
+)
 cols_to_normalize = []
 # if you need to transform something from text to numbers
 # format:
