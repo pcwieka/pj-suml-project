@@ -1,5 +1,6 @@
 import argparse
 
+
 def parse_args():
     parser = argparse.ArgumentParser(description="Process the dataset for ML model training")
     parser.add_argument('--filename', type=str, default='ObesityDataSet.csv', help='Filename of the dataset')
