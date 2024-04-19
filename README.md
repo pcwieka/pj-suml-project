@@ -48,6 +48,9 @@ Po zainstalowaniu Conda, możesz użyć poniższych poleceń do zarządzania śr
 - Utwórz środowisko z pliku `conda.yml`:
   `conda env create -f conda.yml`
 
+- Zaktualizuj środowisko
+ `conda env update -f conda.yml`
+
 - Aktywuj środowisko:
   `conda activate nazwa_środowiska`
 
