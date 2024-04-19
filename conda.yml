@@ -34,4 +34,5 @@ dependencies:
   - wheel=0.41.2=py39hca03da5_0
   - xz=5.4.6=h80987f9_0
   - zlib=1.2.13=h53f4e23_5
+  - kedro
 prefix: /opt/anaconda3/envs/pja_asi_12c

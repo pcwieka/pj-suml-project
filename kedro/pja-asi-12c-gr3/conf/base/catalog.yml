@@ -1,0 +1,42 @@
+# Here you can define all your data sets by using simple YAML syntax.
+#
+# Documentation for this file format can be found in "The Data Catalog"
+# Link: https://docs.kedro.org/en/stable/data/data_catalog.html
+
+obesity_data:
+  type: pandas.CSVDataset
+  filepath: data/raw/ObesityDataSet.csv
+  load_args:
+    sep: ','
+  save_args:
+    index: False
+
+dataset_normalized:
+  type: pandas.CSVDataset
+  filepath: data/reporting/dataset_normalized.csv
+  save_args:
+    index: False
+
+eval_accuracy:
+  type: text.TextDataset
+  filepath: data/reporting/eval_accuracy.txt
+
+eval_conf_matrix:
+  type: text.TextDataset
+  filepath: data/reporting/eval_conf_matrix.txt
+
+eval_class_report:
+  type: text.TextDataset
+  filepath: data/reporting/eval_class_report.txt
+
+val_accuracy:
+  type: text.TextDataset
+  filepath: data/reporting/val_accuracy.txt
+
+val_conf_matrix:
+  type: text.TextDataset
+  filepath: data/reporting/val_conf_matrix.txt
+
+val_class_report:
+  type: text.TextDataset
+  filepath: data/reporting/val_class_report.txt
