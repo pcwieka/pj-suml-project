@@ -1,3 +1,5 @@
+import time
+import wandb
 from sklearn.base import BaseEstimator
 
 
@@ -14,7 +16,11 @@ class ModelTrainer:
         self.Y_pred = None
 
     def train(self):
+        start_time = time.time()
         self.model.fit(self.X_train, self.Y_train)
+        end_time = time.time()
+        wandb.log({"training_time": (end_time - start_time)})
 
     def predict(self):
         self.Y_pred = self.model.predict(self.X_test)
+

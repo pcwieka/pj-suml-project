@@ -10,6 +10,8 @@ from machine_learning.model.model_evaluator import ModelEvaluator
 from machine_learning.model.model_trainer import ModelTrainer
 from machine_learning.model.model_validator import ModelValidator
 
+import wandb
+
 
 def setup():
     os.makedirs(os.path.dirname('output/'), exist_ok=True)
@@ -41,6 +43,18 @@ class MachineLearning:
         self.seed = seed
 
     def run(self):
+        wandb.config.update({
+            "filename": self.filename,
+            "cols_to_remove": self.cols_to_remove,
+            "cols_to_transform": self.cols_to_transform,
+            "cols_to_normalize": self.cols_to_normalize,
+            "model_type": type(self.model).__name__,
+            "train_ratio": self.train_ratio,
+            "test_ratio": self.test_ratio,
+            "validation_ratio": self.validation_ratio,
+            "seed": self.seed
+        })
+
         setup()
 
         dataloader = DataLoader(self.filename)

@@ -1,5 +1,6 @@
+import wandb
 from sklearn.ensemble import RandomForestClassifier
-
+from analytics.wandb.init_wandb import init_wandb
 from helpers.parse_args import parse_args
 from machine_learning.machine_learning import MachineLearning
 
@@ -50,8 +51,12 @@ class Main:
             self.seed
         )
 
+
+
         machine_learning.run()
 
+
 if __name__ == "__main__":
+    init_wandb()
     app = Main()
     app.run()

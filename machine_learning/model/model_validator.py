@@ -1,5 +1,7 @@
 from sklearn.base import BaseEstimator
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+import wandb
+import matplotlib.pyplot as plt
 
 
 class ModelValidator:
@@ -20,3 +22,24 @@ class ModelValidator:
         print(conf_matrix)
         print("Classification Report:")
         print(class_report)
+
+        wandb.log({"Validation Accuracy": accuracy})
+
+        plt.figure(figsize=(8, 6))
+        plt.imshow(conf_matrix, cmap='Blues', interpolation='nearest')
+        plt.title('Validation Confusion Matrix')
+        plt.colorbar()
+        plt.xlabel('Predicted')
+        plt.ylabel('True')
+        plt.xticks(ticks=range(len(conf_matrix)), labels=range(len(conf_matrix)))
+        plt.yticks(ticks=range(len(conf_matrix)), labels=range(len(conf_matrix)))
+        wandb.log({"Validation Confusion Matrix": wandb.Image(plt)})
+        plt.close()
+
+        class_report_dict = classification_report(self.Y_validate, y_pred_validate, output_dict=True)
+        for metric, value in class_report_dict.items():
+            if isinstance(value, dict):
+                for sub_metric, sub_value in value.items():
+                    wandb.log({f"Validation Classification Report/{metric}/{sub_metric}": sub_value})
+            else:
+                wandb.log({f"Validation Classification Report/{metric}": value})
