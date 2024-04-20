@@ -162,3 +162,5 @@ venv.bak/
 mlruns/*
 
 wandb/
+
+stats.json

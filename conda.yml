@@ -36,5 +36,6 @@ dependencies:
   - zlib=1.2.13=h53f4e23_5
   - matplotlib
   - kedro
+  - kedro-viz
   - wandb
 prefix: /opt/anaconda3/envs/pja_asi_12c
