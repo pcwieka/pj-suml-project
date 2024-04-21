@@ -3,3 +3,8 @@ jupyterlab>=3.0
 kedro~=0.19.4
 kedro-telemetry>=0.3.1
 notebook
+
+wandb~=0.16.5
+scikit-learn~=1.4.1.post1
+joblib~=1.4.0
+matplotlib~=3.8.4

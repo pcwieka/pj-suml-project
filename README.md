@@ -1,73 +1,86 @@
 # PJA_ASI_12c_GR3
 
-## Aplikacja
+## How to install dependencies
 
-### Uruchomienie
+For detailed information about the Conda environment setup, see the [Conda environment documentation](docs/conda_environment.md).
 
-`python main.py --filename=ObesityDataSet.csv --train_ratio=0.60 --test_ratio=0.35 --validation_ratio=0.05 --seed=50`
+## How to run your Kedro pipeline
 
-Z domyślnymi argumentami:
+You can run your Kedro project with:
 
-`python main.py`
+```
+kedro run
+```
 
-## Instrukcja Instalacji Środowiska
+## How to run Kedro Viz
 
-## Instalacja Conda na Windows, Linux, i MacOS
+Run:
 
-Conda to zarządca pakietów i środowisk, który ułatwia instalację, uruchamianie i aktualizację pakietów oraz ich zależności. Jest on szczególnie przydatny w społecznościach Data Science i Machine Learning.
+```
+kedro viz
+```
 
-### Instalacja na Windows
+## How to test your Kedro project
 
-1. Pobierz instalator Anaconda dla Windows z [oficjalnej strony](https://www.anaconda.com/products/individual).
-2. Uruchom pobrany plik `.exe` i postępuj zgodnie z instrukcjami instalatora.
-3. Zaleca się pozostawienie opcji dodania Anacony do zmiennej środowiskowej PATH odznaczonej, ale upewnij się, że zaznaczyłeś opcję zarejestrowania Anacondy jako domyślnej wersji Pythona.
+Have a look at the file `src/tests/test_run.py` for instructions on how to write your tests. You can run your tests as follows:
 
-### Instalacja na Linux
+```
+pytest
+```
 
-1. Pobierz odpowiedni instalator skryptowy Anaconda dla Linuxa z [oficjalnej strony](https://www.anaconda.com/products/individual).
-2. Otwórz terminal i przejdź do katalogu, w którym został pobrany instalator.
-3. Uruchom skrypt instalacyjny przy użyciu polecenia `bash Anaconda3-2020.02-Linux-x86_64.sh`, zastępując nazwę pliku aktualną wersją pobranego instalatora.
-4. Postępuj zgodnie z instrukcjami wyświetlanymi w terminalu.
+You can configure the coverage threshold in your project's `pyproject.toml` file under the `[tool.coverage.report]` section.
 
-### Instalacja na MacOS
 
-1. Pobierz instalator Anaconda dla MacOS z [oficjalnej strony](https://www.anaconda.com/products/individual).
-2. Możesz wybrać wersję graficzną instalatora lub instalator lini poleceń. Dla instalatora lini poleceń, otwórz terminal, przejdź do folderu z pobranym instalatorem i uruchom go za pomocą `bash Anaconda3-2020.02-MacOSX-x86_64.sh`, dostosowując nazwę do wersji instalatora.
-3. Postępuj zgodnie z instrukcjami instalatora.
+## Project dependencies
 
-### Podstawowe polecenia Conda
+To see and update the dependency requirements for your project see [Conda environment documentation](docs/conda_environment.md).
 
-Po zainstalowaniu Conda, możesz użyć poniższych poleceń do zarządzania środowiskami i pakietami:
+[Further information about project dependencies](https://docs.kedro.org/en/stable/kedro_project_setup/dependencies.html#project-specific-dependencies)
 
-- Sprawdź wersję Conda:
-  `conda --version`
+## How to work with Kedro and notebooks
 
-- Przejdź do katalogu Twojego projektu:
-  `cd ścieżka/do/twojego/projektu`
+> Note: Using `kedro jupyter` or `kedro ipython` to run your notebook provides these variables in scope: `context`, 'session', `catalog`, and `pipelines`.
+>
+> Jupyter, JupyterLab, and IPython are already included in the project requirements by default, so once you have run `pip install -r requirements.txt` you will not need to take any extra steps before you use them.
 
-- Utwórz środowisko z pliku `conda.yml`:
-  `conda env create -f conda.yml`
+### Jupyter
+To use Jupyter notebooks in your Kedro project, you need to install Jupyter:
 
-- Zaktualizuj środowisko
- `conda env update -f conda.yml`
+```
+pip install jupyter
+```
 
-- Aktywuj środowisko:
-  `conda activate nazwa_środowiska`
+After installing Jupyter, you can start a local notebook server:
 
-- Wyświetl listę zainstalowanych pakietów w aktywnym środowisku:
-`conda list`
+```
+kedro jupyter notebook
+```
 
-- Zaktualizuj Conda do najnowszej wersji:
-`conda update conda`
+### JupyterLab
+To use JupyterLab, you need to install it:
 
-### Korzystanie z Conda Forge
+```
+pip install jupyterlab
+```
 
-Conda Forge to społecznościowe repozytorium pakietów dla Conda. Aby zainstalować pakiet z Conda Forge, użyj:
+You can also start JupyterLab:
 
-`conda install -c conda-forge nazwa_pakietu`
+```
+kedro jupyter lab
+```
 
-### Instalacja nowych bibliotek
+### IPython
+And if you want to run an IPython session:
 
-Conda instalacja biblioteki:
+```
+kedro ipython
+```
 
-`conda install nazwa_biblioteki`
+### How to ignore notebook output cells in `git`
+To automatically strip out all output cell contents before committing to `git`, you can use tools like [`nbstripout`](https://github.com/kynan/nbstripout). For example, you can add a hook in `.git/config` with `nbstripout --install`. This will run `nbstripout` before anything is committed to `git`.
+
+> *Note:* Your output cells will be retained locally.
+
+## Package your Kedro project
+
+[Further information about building project documentation and packaging your project](https://docs.kedro.org/en/stable/tutorial/package_a_project.html)
