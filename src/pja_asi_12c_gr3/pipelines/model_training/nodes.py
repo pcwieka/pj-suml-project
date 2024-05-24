@@ -1,12 +1,13 @@
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 
 from pja_asi_12c_gr3.utils.wandb_metrics import WandbMetrics
 
 
 def train_model(train_set, model_params):
-    model = RandomForestClassifier(n_estimators=model_params.get('n_estimators', 100),
-                                   random_state=model_params.get('random_state', 42))
+    #model = RandomForestClassifier(n_estimators=model_params.get('n_estimators', 100), random_state=model_params.get('random_state', 42))
+    model = LogisticRegression(max_iter=model_params.get('max_iter', 1000), random_state=model_params.get('random_state', 42))
 
     X_train = train_set.drop(columns=[model_params['target_column']])
     Y_train = train_set[model_params['target_column']]

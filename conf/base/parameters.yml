@@ -30,5 +30,11 @@ model:
   random_state: 42
   target_column: "NObeyesdad"
   n_estimators: 100
+  max_iter: 1000
 
-trained_model_filepath: "data/models/trained_model.pkl"
+model_selection:
+  method: "autogluon" # "manual/autogluon"
+
+deployment:
+  model_filepath: "data/models/champion_model.pkl"
+  metrics_filepath: "data/models/champion_metrics.pkl"

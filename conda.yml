@@ -3,39 +3,14 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - bzip2=1.0.8=h93a5062_5
-  - ca-certificates=2024.3.11=hca03da5_0
-  - expat=2.5.0=h313beb8_0
-  - libblas=3.9.0=21_osxarm64_openblas
-  - libcblas=3.9.0=21_osxarm64_openblas
-  - libcxx=16.0.6=h4653b0c_0
-  - libffi=3.4.4=hca03da5_0
-  - libgfortran=5.0.0=13_2_0_hd922786_3
-  - libgfortran5=13.2.0=hf226fd6_3
-  - libiconv=1.16=h1a28f6b_2
-  - liblapack=3.9.0=21_osxarm64_openblas
-  - libopenblas=0.3.26=openmp_h6c19121_0
-  - libsqlite=3.45.2=h091b4b1_0
-  - libzlib=1.2.13=h53f4e23_5
-  - llvm-openmp=18.1.2=hcd81f8e_0
-  - ncurses=6.4=h313beb8_0
-  - numpy=1.26.4=py39h7aa2656_0
-  - openssl=3.2.1=h0d3ecfb_1
-  - pandas=2.2.1
-  - pip=23.3.1=py39hca03da5_0
-  - python=3.9.18=hd7ebdb9_1_cpython
-  - python_abi=3.9=4_cp39
-  - readline=8.2=h1a28f6b_0
-  - scikit-learn=1.4.1.post1
-  - setuptools=68.2.2=py39hca03da5_0
-  - sqlite=3.41.2=h80987f9_0
-  - tk=8.6.13=h5083fa2_1
-  - tzdata=2024a=h04d1e81_0
-  - wheel=0.41.2=py39hca03da5_0
-  - xz=5.4.6=h80987f9_0
-  - zlib=1.2.13=h53f4e23_5
+  - python=3.9.18
+  - pip
+  - numpy
+  - pandas
+  - scikit-learn
   - matplotlib
   - kedro
   - kedro-viz
   - wandb
+  - autogluon
 prefix: /opt/anaconda3/envs/pja_asi_12c

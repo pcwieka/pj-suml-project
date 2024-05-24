@@ -1,14 +1,19 @@
 from kedro.pipeline import Pipeline, node
-
-from .nodes import save_model
-
+from .nodes import deploy_best_model
 
 def create_pipeline(**kwargs):
     return Pipeline([
         node(
-            func=save_model,
-            inputs=["trained_model", "params:trained_model_filepath"],
-            outputs=None,
-            name="save_model_node"
+            func=deploy_best_model,
+            inputs=[
+                "best_model",
+                "trained_model",
+                "eval_accuracy",
+                "eval_conf_matrix",
+                "eval_class_report",
+                "params:deployment"
+            ],
+            outputs="deployed_model",
+            name="deploy_best_model_node"
         )
     ])
