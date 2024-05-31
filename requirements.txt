@@ -11,4 +11,4 @@ matplotlib~=3.8.4
 
 torch==2.1.2
 torchvision==0.16.2
-autogluon
+autogluon==1.1.0
