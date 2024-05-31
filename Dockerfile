@@ -2,6 +2,7 @@ ARG BASE_IMAGE=python:3.10-slim
 FROM $BASE_IMAGE as runtime-environment
 RUN apt-get update && apt-get install -y build-essential
 COPY requirements.txt /tmp/requirements.txt
+RUN pip install ''kedro[all]''
 RUN pip install --no-cache -r /tmp/requirements.txt && \
 rm -f /tmp/requirements.txt
 ARG KEDRO_UID=999
