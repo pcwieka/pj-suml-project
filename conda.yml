@@ -13,4 +13,7 @@ dependencies:
   - kedro-viz
   - wandb
   - autogluon
+  - pydantic
+  - fastapi
+  - uvicorn
 prefix: /opt/anaconda3/envs/pja_asi_12c

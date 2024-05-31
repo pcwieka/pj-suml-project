@@ -8,3 +8,6 @@ wandb~=0.16.5
 scikit-learn~=1.4.1.post1
 joblib~=1.4.0
 matplotlib~=3.8.4
+pydantic~=2.7.1
+fastapi~=0.70.0
+uvicorn~=0.29.0
