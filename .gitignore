@@ -5,6 +5,7 @@
 conf/local/.gitkeep
 !conf/local/.gitkeep
 .telemetry
+.config
 
 # ignore potentially sensitive credentials files
 conf/**/*credentials*
@@ -38,6 +39,7 @@ out/
 .AppleDouble
 .LSOverride
 .Trashes
+.bash_history
 
 # Vim
 *~

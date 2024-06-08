@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  kedro:
+    build:
+      context: ..
+      dockerfile: docker/kedro/Dockerfile
+    image: pjwstk-asi/kedro
+    container_name: asi-ml-kedro
+    environment:
+      - MODEL_URL=http://model:8001
+      - WANDB_API_KEY=${WANDB_API_KEY}
+    volumes:
+      - ..:/home/kedro_docker
+      - autogluon_models:/home/kedro_docker/AutogluonModels
+    ports:
+      - "8888:8888"
+    networks:
+      - pjwstk-asi
+
+  api:
+    build:
+      context: ..
+      dockerfile: docker/api/Dockerfile
+    image: pjwstk-asi/api
+    container_name: asi-ml-api
+    environment:
+      - CHAMPION_MODEL_URL=http://model:8001/champion_model.pkl
+    volumes:
+      - autogluon_models:/app/AutogluonModels
+    ports:
+      - "8000:8000"
+    depends_on:
+      - model
+    networks:
+      - pjwstk-asi
+
+  model:
+    build:
+      context: ..
+      dockerfile: docker/model/Dockerfile
+    image: pjwstk-asi/model
+    container_name: asi-ml-model
+    ports:
+      - "8001:8001"
+    networks:
+      - pjwstk-asi
+
+volumes:
+  autogluon_models:
+
+networks:
+  pjwstk-asi:
+    driver: bridge

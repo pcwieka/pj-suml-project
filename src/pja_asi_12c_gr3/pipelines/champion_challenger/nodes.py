@@ -1,14 +1,26 @@
 import os
 import joblib
+import requests
+from io import BytesIO
 
 def load_champion_metrics(deployment_params):
-    if not os.path.exists(deployment_params["metrics_filepath"]):
-        return 0.0, [], "No previous champion model found."
+    model_url = os.getenv("MODEL_URL")
 
-    champion_metrics = joblib.load(deployment_params["metrics_filepath"])
+    if model_url:
+        response = requests.get(f"{model_url}/champion_metrics.pkl")
+        if response.status_code == 200:
+            champion_metrics = joblib.load(BytesIO(response.content))
+        else:
+            return 0.0, [], "No previous champion model found."
+    else:
+        if not os.path.exists(deployment_params["metrics_filepath"]):
+            return 0.0, [], "No previous champion model found."
+        champion_metrics = joblib.load(deployment_params["metrics_filepath"])
+
     return champion_metrics['accuracy'], champion_metrics['conf_matrix'], champion_metrics['class_report']
 
-def compare_models(eval_accuracy, eval_conf_matrix, eval_class_report, champion_eval_accuracy, champion_eval_conf_matrix, champion_eval_class_report):
+def compare_models(eval_accuracy, eval_conf_matrix, eval_class_report, champion_eval_accuracy,
+                   champion_eval_conf_matrix, champion_eval_class_report):
     # Print metrics for challenger
     print("Challenger Model Metrics:")
     print(f"Accuracy: {eval_accuracy}")

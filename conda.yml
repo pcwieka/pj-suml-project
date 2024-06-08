@@ -16,4 +16,7 @@ dependencies:
   - pydantic
   - fastapi
   - uvicorn
+  - flask
+  - requests
+  - joblib
 prefix: /opt/anaconda3/envs/pja_asi_12c

@@ -37,6 +37,30 @@ To see and update the dependency requirements for your project see [Conda enviro
 
 [Further information about project dependencies](https://docs.kedro.org/en/stable/kedro_project_setup/dependencies.html#project-specific-dependencies)
 
+## Docker
+
+See the [Makefile](Makefile) in the root of the project.
+
+Run `make all` to build and start all containers.
+
+Alternatively you can execute the commands one by one:
+
+```
+make build
+make up
+```
+
+Then run kedro training pipelines:
+
+```
+make kedro-run
+```
+
+Use [API](api/README.md) to use the model for predictions.
+
+Run `make down` to remove all the containers after you are done.
+
+
 ## How to work with Kedro and notebooks
 
 > Note: Using `kedro jupyter` or `kedro ipython` to run your notebook provides these variables in scope: `context`, 'session', `catalog`, and `pipelines`.
