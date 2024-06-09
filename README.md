@@ -1,43 +1,39 @@
 # PJ SUML Project
 
-## How to install dependencies
+This repository hosts a machine learning project aimed at predicting obesity levels based on various health and lifestyle factors. 
 
-For detailed information about the Conda environment setup, see the [Conda environment documentation](docs/conda_environment.md).
+The project utilizes the [Obesity or CVD Risk dataset](https://www.kaggle.com/datasets/aravindpcoder/obesity-or-cvd-risk-classifyregressorcluster) from Kaggle.
 
-## How to run your Kedro pipeline
+Built using Kedro, a powerful data and analytics pipeline framework, the project is fully containerized with Docker to ensure seamless deployment and scalability. 
 
-You can run your Kedro project with:
+Additionally, a user-friendly UI application is provided, allowing users to input their data and receive predictions regarding their obesity levels.
 
-```
-kedro run
-```
+## Project structure 
 
-## How to run Kedro Viz
+### Kedro
+The main part of the project. Responsible for the machine learning of the model. It is organized into several Kedro pipelines:
 
-Run:
+- **data preparation**: Handles data cleaning, transformation, and feature engineering.
+- **model training**: Responsible for training the selected machine learning model (method: manual).
+- **automl**: Implements automated machine learning techniques to optimize model selection and hyperparameters (method: autogluon).
+- **champion challenger**: Compares models to select the best performing one.
+- **model deployment**: Deploys the model to pickle file.
 
-```
-kedro viz
-```
+### API
 
-## How to test your Kedro project
+The API is implemented using FastAPI and provides an endpoint for predicting obesity levels.
 
-Have a look at the file `src/tests/test_run.py` for instructions on how to write your tests. You can run your tests as follows:
+### UI
 
-```
-pytest
-```
+The UI is implemented using Streamlit and provides a user-friendly form for predicting obesity levels.
 
-You can configure the coverage threshold in your project's `pyproject.toml` file under the `[tool.coverage.report]` section.
+## Dockerized Environment
+The entire environment is containerized using Docker, ensuring consistency and ease of deployment across different platforms. The key Docker containers/images include:
 
-
-## Project dependencies
-
-To see and update the dependency requirements for your project see [Conda environment documentation](docs/conda_environment.md).
-
-[Further information about project dependencies](https://docs.kedro.org/en/stable/kedro_project_setup/dependencies.html#project-specific-dependencies)
-
-## Docker
+- **kedro**: Contains the Kedro project and manages the execution of pipelines.
+- **model**: Persists the trained model and is used by the API container. The model is saved here by the Kedro pipeline.
+- **api**: Provides an API with a predict method for making predictions using the trained model.
+- **ui**: A Streamlit application that provides a user-friendly form for predicting obesity levels.
 
 See the [Makefile](Makefile) in the root of the project.
 
@@ -56,55 +52,50 @@ Then run kedro training pipelines:
 make kedro-run
 ```
 
-Use [API](api/README.md) to use the model for predictions.
-
 Run `make down` to remove all the containers after you are done.
 
+### API
+Use the [API](api/README.md) to use the model for predictions. It's already started in the docker container, use only requests.
 
-## How to work with Kedro and notebooks
+### UI
+Use the [UI](ui/README.md) to load the form to predict the obesity level. It's already started in the docker container, visit:
+TODO: enter the UI URL here.
 
-> Note: Using `kedro jupyter` or `kedro ipython` to run your notebook provides these variables in scope: `context`, 'session', `catalog`, and `pipelines`.
->
-> Jupyter, JupyterLab, and IPython are already included in the project requirements by default, so once you have run `pip install -r requirements.txt` you will not need to take any extra steps before you use them.
+## Local environment
+### Install dependencies using Conda
 
-### Jupyter
-To use Jupyter notebooks in your Kedro project, you need to install Jupyter:
-
-```
-pip install jupyter
-```
-
-After installing Jupyter, you can start a local notebook server:
+Install conda environment from the [official website](https://www.anaconda.com/products/individual).
 
 ```
-kedro jupyter notebook
+conda env create -f conda.yml
 ```
 
-### JupyterLab
-To use JupyterLab, you need to install it:
-
 ```
-pip install jupyterlab
+conda env update -f conda.yml
 ```
 
-You can also start JupyterLab:
-
 ```
-kedro jupyter lab
+conda activate pj-suml-project
 ```
 
-### IPython
-And if you want to run an IPython session:
+### Run your Kedro pipeline
+
+You can run your Kedro project with:
 
 ```
-kedro ipython
+kedro run
 ```
 
-### How to ignore notebook output cells in `git`
-To automatically strip out all output cell contents before committing to `git`, you can use tools like [`nbstripout`](https://github.com/kynan/nbstripout). For example, you can add a hook in `.git/config` with `nbstripout --install`. This will run `nbstripout` before anything is committed to `git`.
+To run Kedro Viz:
 
-> *Note:* Your output cells will be retained locally.
+```
+kedro viz
+```
 
-## Package your Kedro project
+### Run API
 
-[Further information about building project documentation and packaging your project](https://docs.kedro.org/en/stable/tutorial/package_a_project.html)
+See the [API doc](api/README.md) for more details how to start it.
+
+### Run UI
+
+See the [UI doc](ui/README.md) for more details how to start it.
