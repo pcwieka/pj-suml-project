@@ -1,13 +1,10 @@
 from sklearn.model_selection import train_test_split
 
-from pj-suml-project.utils.wandb_metrics import WandbMetrics
-
 
 def remove_columns(data, cols_to_remove):
     data = data.copy()
     original_cols = data.shape[1]
     data = data.drop(cols_to_remove)
-    WandbMetrics.log({"original_columns": original_cols, "columns_after_removal": data.shape[1]})
     return data
 
 
@@ -25,7 +22,6 @@ def fill_missing_vals(data):
     for column in data.columns:
         data[column] = data[column].fillna(data[column].mean() if data[column].dtype in ['float64', 'int64'] else data[column].mode()[0])
     missing_after = data.isnull().sum().sum()
-    WandbMetrics.log({"missing_before": missing_before, "missing_after": missing_after})
     return data
 
 
@@ -38,7 +34,6 @@ def clean_outliers(data):
     iqr = q3 - q1
     data = data[~((data[numeric_cols] < (q1 - 1.5 * iqr)) | (data[numeric_cols] > (q3 + 1.5 * iqr))).any(axis=1)]
     after_rows = data.shape[0]
-    WandbMetrics.log({"rows_before": before_rows, "rows_after": after_rows})
     return data
 
 

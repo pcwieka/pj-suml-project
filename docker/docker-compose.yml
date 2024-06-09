@@ -9,7 +9,6 @@ services:
     container_name: suml-kedro
     environment:
       - MODEL_URL=http://model:8001
-      - WANDB_API_KEY=${WANDB_API_KEY}
     volumes:
       - ..:/home/kedro_docker
       - autogluon_models:/home/kedro_docker/AutogluonModels
