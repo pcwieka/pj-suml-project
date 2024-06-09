@@ -17,6 +17,17 @@ services:
     networks:
       - pjwstk-suml
 
+  model:
+    build:
+      context: ..
+      dockerfile: docker/model/Dockerfile
+    image: pjwstk-suml/model
+    container_name: suml-model
+    ports:
+      - "8001:8001"
+    networks:
+      - pjwstk-suml
+
   api:
     build:
       context: ..
@@ -34,14 +45,18 @@ services:
     networks:
       - pjwstk-suml
 
-  model:
+  ui:
     build:
       context: ..
-      dockerfile: docker/model/Dockerfile
-    image: pjwstk-suml/model
-    container_name: suml-model
+      dockerfile: docker/ui/Dockerfile
+    image: pjwstk-suml/ui
+    container_name: suml-ui
+    environment:
+      - API_URL=http://api:8000
     ports:
-      - "8001:8001"
+      - "8501:8501"
+    depends_on:
+      - api
     networks:
       - pjwstk-suml
 

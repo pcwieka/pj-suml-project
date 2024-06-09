@@ -12,6 +12,9 @@ build-api:
 build-model:
 	docker-compose -f docker/docker-compose.yml build --no-cache model
 
+build-ui:
+	docker-compose -f docker/docker-compose.yml build  --no-cache ui
+
 up:
 	docker-compose -f docker/docker-compose.yml up -d
 
@@ -21,4 +24,7 @@ kedro-run:
 down:
 	docker-compose -f docker/docker-compose.yml down
 
-.PHONY: build up kedro-run down all
+clean-model:
+	docker-compose -f docker/docker-compose.yml exec model rm -f /model/champion_model.pkl /model/champion_metrics.pkl
+
+.PHONY: build build-kedro build-api build-model build-ui up kedro-run down clean-model all

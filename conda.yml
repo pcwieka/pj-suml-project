@@ -18,3 +18,4 @@ dependencies:
   - flask
   - requests
   - joblib
+  - streamlit
