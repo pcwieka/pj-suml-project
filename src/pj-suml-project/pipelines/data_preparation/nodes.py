@@ -4,7 +4,10 @@ from sklearn.model_selection import train_test_split
 def remove_columns(data, cols_to_remove):
     data = data.copy()
     original_cols = data.shape[1]
-    data = data.drop(cols_to_remove)
+    data = data.drop(cols_to_remove, axis=1)
+    columns_after_removal = data.shape[1]
+    print(f"Original columns: {original_cols}")
+    print(f"Columns after removal: {columns_after_removal}")
     return data
 
 
@@ -19,21 +22,26 @@ def transform_text_values(data, cols_to_transform):
 def fill_missing_vals(data):
     data = data.copy()
     missing_before = data.isnull().sum().sum()
+    print(f"Missing values before: {missing_before}")
     for column in data.columns:
         data[column] = data[column].fillna(data[column].mean() if data[column].dtype in ['float64', 'int64'] else data[column].mode()[0])
     missing_after = data.isnull().sum().sum()
+    print(f"Missing values after: {missing_after}")
+
     return data
 
 
 def clean_outliers(data):
     data = data.copy()
     before_rows = data.shape[0]
+    print(f"Clean outliers before rows: {before_rows}")
     numeric_cols = data.select_dtypes(include=['float64', 'int64']).columns
     q1 = data[numeric_cols].quantile(0.25)
     q3 = data[numeric_cols].quantile(0.75)
     iqr = q3 - q1
     data = data[~((data[numeric_cols] < (q1 - 1.5 * iqr)) | (data[numeric_cols] > (q3 + 1.5 * iqr))).any(axis=1)]
     after_rows = data.shape[0]
+    print(f"Clean outliers after rows: {after_rows}")
     return data
 
 

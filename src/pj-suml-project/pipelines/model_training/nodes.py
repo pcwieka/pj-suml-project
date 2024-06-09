@@ -12,6 +12,8 @@ def train_model(train_set, model_params):
 
     model.fit(X_train, Y_train)
     train_accuracy = model.score(X_train, Y_train)
+    print(f"Train accuracy: {train_accuracy}")
+
     return model
 
 
@@ -24,6 +26,7 @@ def predict_model(test_set, model, model_params):
 def evaluate_model(test_set, Y_pred, model_params):
     Y_test = test_set[model_params['target_column']]
     eval_accuracy = accuracy_score(Y_test, Y_pred)
+    print(f"Evaluation accuracy: {eval_accuracy}")
     eval_conf_matrix = confusion_matrix(Y_test, Y_pred)
     eval_class_report = classification_report(Y_test, Y_pred)
     return str(eval_accuracy), repr(eval_conf_matrix), eval_class_report
@@ -34,6 +37,7 @@ def validate_model(validate_set, model, model_params):
     Y_validate = validate_set[model_params['target_column']]
     Y_pred_validate = model.predict(X_validate)
     val_accuracy = accuracy_score(Y_validate, Y_pred_validate)
+    print(f"Validation accuracy: {val_accuracy}")
     val_conf_matrix = confusion_matrix(Y_validate, Y_pred_validate)
     val_class_report = classification_report(Y_validate, Y_pred_validate)
     return str(val_accuracy), repr(val_conf_matrix), val_class_report
