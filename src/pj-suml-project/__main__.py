@@ -1,5 +1,5 @@
-"""PJA_ASI_12c_GR3 file for ensuring the package is executable
-as `pja-asi-12c-gr3` and `python -m pja_asi_12c_gr3`
+"""pj-suml-project file for ensuring the package is executable
+as `pj-suml-project` and `python -m pj-suml-project`
 """
 import importlib
 from pathlib import Path

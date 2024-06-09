@@ -1,4 +1,4 @@
-# PJA_ASI_12c_GR3
+# PJ SUML Project
 
 ## How to install dependencies
 

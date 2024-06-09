@@ -1,4 +1,4 @@
-"""PJA_ASI_12c_GR3
+"""pj-suml-project
 """
 
 __version__ = "0.1"

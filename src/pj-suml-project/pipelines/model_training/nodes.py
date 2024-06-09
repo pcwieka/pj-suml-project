@@ -2,7 +2,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 
-from pja_asi_12c_gr3.utils.wandb_metrics import WandbMetrics
+from pj-suml-project.utils.wandb_metrics import WandbMetrics
 
 
 def train_model(train_set, model_params):

@@ -1,6 +1,6 @@
 from sklearn.model_selection import train_test_split
 
-from pja_asi_12c_gr3.utils.wandb_metrics import WandbMetrics
+from pj-suml-project.utils.wandb_metrics import WandbMetrics
 
 
 def remove_columns(data, cols_to_remove):

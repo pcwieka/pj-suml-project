@@ -1,9 +1,9 @@
-name: pja_asi_12c
+name: pj-suml-project
 channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3.9.18
+  - python=3.10
   - pip
   - numpy
   - pandas
@@ -19,4 +19,3 @@ dependencies:
   - flask
   - requests
   - joblib
-prefix: /opt/anaconda3/envs/pja_asi_12c
