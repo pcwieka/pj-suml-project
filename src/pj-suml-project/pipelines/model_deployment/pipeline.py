@@ -1,7 +1,7 @@
 from kedro.pipeline import Pipeline, node
 from .nodes import deploy_best_model
 
-def create_pipeline(**kwargs):
+def create_pipeline():
     return Pipeline([
         node(
             func=deploy_best_model,

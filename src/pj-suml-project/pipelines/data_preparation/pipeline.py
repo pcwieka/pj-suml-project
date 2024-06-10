@@ -3,7 +3,7 @@ from kedro.pipeline import Pipeline, node
 from .nodes import split_data, remove_columns, transform_text_values, fill_missing_vals, clean_outliers, normalize
 
 
-def create_pipeline(**kwargs):
+def create_pipeline():
     return Pipeline([
         node(
             func=remove_columns,

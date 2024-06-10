@@ -1,23 +1,32 @@
 import os
+import time
 import requests
 import streamlit as st
-import time
 
 # API endpoint URL
 API_URL = os.getenv("API_URL")
 
 # Function to make prediction request
 def get_prediction(data):
+    """
+    Args:
+        data: data to predict for
+
+    Returns: response from the server with prediction
+    """
     response = requests.post(API_URL + "/predict", json=data)
     if response.status_code == 200:
         return response.json()
-    else:
-        st.error(f"Error: {response.status_code}")
-        return None
+    st.error(f"Error: {response.status_code}")
+    return None
 
 # Streamlit application
 def main():
-    st.set_page_config(page_title="Obesity Level Prediction", page_icon=":weight_lifter:", layout="centered")
+    st.set_page_config(
+        page_title="Obesity Level Prediction",
+        page_icon=":weight_lifter:",
+        layout="centered"
+    )
 
     # Custom CSS to style the app
     st.markdown("""

@@ -2,6 +2,15 @@ from sklearn.model_selection import train_test_split
 
 
 def remove_columns(data, cols_to_remove):
+    """
+
+    Args:
+        data: dataset to be cleaned
+        cols_to_remove: columns to be removed
+
+    Returns: cleaned dataset
+
+    """
     data = data.copy()
     original_cols = data.shape[1]
     data = data.drop(cols_to_remove, axis=1)
@@ -12,6 +21,15 @@ def remove_columns(data, cols_to_remove):
 
 
 def transform_text_values(data, cols_to_transform):
+    """
+
+    Args:
+        data: dataset to be cleaned
+        cols_to_transform: columns to be transformed
+
+    Returns: transformed dataset
+
+    """
     data = data.copy()
     for column, mapping in cols_to_transform.items():
         if column in data.columns:
@@ -20,11 +38,21 @@ def transform_text_values(data, cols_to_transform):
 
 
 def fill_missing_vals(data):
+    """
+
+    Args:
+        data: dataset to be filled with missing values
+
+    Returns: dataset with missing values filled
+
+    """
     data = data.copy()
     missing_before = data.isnull().sum().sum()
     print(f"Missing values before: {missing_before}")
     for column in data.columns:
-        data[column] = data[column].fillna(data[column].mean() if data[column].dtype in ['float64', 'int64'] else data[column].mode()[0])
+        data[column] = data[column].fillna(data[column].mean()
+                                           if data[column].dtype in ['float64', 'int64']
+                                           else data[column].mode()[0])
     missing_after = data.isnull().sum().sum()
     print(f"Missing values after: {missing_after}")
 
@@ -32,6 +60,14 @@ def fill_missing_vals(data):
 
 
 def clean_outliers(data):
+    """
+
+    Args:
+        data: dataset to be cleaned
+
+    Returns: dataset with cleaned outliers
+
+    """
     data = data.copy()
     before_rows = data.shape[0]
     print(f"Clean outliers before rows: {before_rows}")
@@ -46,6 +82,15 @@ def clean_outliers(data):
 
 
 def normalize(data, cols_to_normalize):
+    """
+
+    Args:
+        data: dataset to be normalized
+        cols_to_normalize: columns to be normalized
+
+    Returns: normalized dataset
+
+    """
     data = data.copy()
     for column in cols_to_normalize:
         if column in data.columns:
@@ -54,6 +99,15 @@ def normalize(data, cols_to_normalize):
 
 
 def split_data(data, params):
+    """
+
+    Args:
+        data: dataset to split
+        params: parameters for data splitting
+
+    Returns: train, validate and test sets
+
+    """
     train_ratio = params['train_ratio']
     test_ratio = params['test_ratio']
     validation_ratio = params['validation_ratio']
@@ -73,4 +127,9 @@ def split_data(data, params):
 
 
 def save_data(data, output_path):
+    """
+    Args:
+        data: report data to save
+        output_path: output path file for saving data
+    """
     data.to_csv(output_path, index=False)

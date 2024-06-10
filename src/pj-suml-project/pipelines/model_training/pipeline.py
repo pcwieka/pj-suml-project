@@ -2,7 +2,7 @@ from kedro.pipeline import Pipeline, node
 from .nodes import train_model, predict_model, evaluate_model, validate_model
 
 
-def create_pipeline(**kwargs):
+def create_pipeline():
     return Pipeline([
         node(
             func=train_model,

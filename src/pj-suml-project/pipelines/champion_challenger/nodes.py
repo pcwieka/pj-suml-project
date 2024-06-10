@@ -1,7 +1,8 @@
+from io import BytesIO
 import os
 import joblib
 import requests
-from io import BytesIO
+
 
 def load_champion_metrics(deployment_params):
     model_url = os.getenv("MODEL_URL")
@@ -40,8 +41,8 @@ def compare_models(eval_accuracy, eval_conf_matrix, eval_class_report, champion_
     print(f"Champion Accuracy: {champion_accuracy}")
 
     if model_accuracy > champion_accuracy:
-        print(f"Challenger model is better than champion model.")
+        print("Challenger model is better than champion model.")
         return "trained_model"
-    else:
-        print(f"Current champion model is better than challenger model.")
-        return "current_champion"
+    print("Current champion model is better than challenger model.")
+    return "current_champion"
+

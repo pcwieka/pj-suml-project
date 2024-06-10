@@ -26,15 +26,22 @@ def load_model():
         response = requests.get(model_url)
         if response.status_code == 200:
             return joblib.load(BytesIO(response.content))
-        else:
-            raise ValueError(f"Error loading the model from {model_url}")
+        raise ValueError(f"Error loading the model from {model_url}")
     else:
         if model_path.exists():
             return joblib.load(model_path)
-        else:
-            raise ValueError(f"Model file not found at {model_path}")
+        raise ValueError(f"Model file not found at {model_path}")
+
 
 def preprocess(input_data):
+    """
+
+    Args:
+        input_data: data to predict obesity level for
+
+    Returns: preprocessed with normalized columns
+
+    """
     for column, mapping in columns_transform.items():
         input_data[column] = input_data[column].map(mapping)
     cols_to_normalize = ["Age", "Height", "Weight", "FCVC", "NCP", "CH2O", "FAF", "TUE"]
@@ -43,6 +50,14 @@ def preprocess(input_data):
     return input_data
 
 def predict(input_data):
+    """
+
+    Args:
+        input_data: data to predict obesity level for
+
+    Returns: predicted obesity level
+
+    """
     input_df = pd.DataFrame([input_data.dict()])
     preprocessed_data = preprocess(input_df)
     model = load_model()

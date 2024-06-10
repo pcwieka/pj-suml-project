@@ -30,7 +30,14 @@ def save_model_metrics_remotely(metrics, model_url):
     else:
         raise ValueError(f"Error uploading the metrics to {model_url}")
 
-def deploy_best_model(best_model, trained_model, eval_accuracy, eval_conf_matrix, eval_class_report, deployment_params):
+def deploy_best_model(
+        best_model,
+        trained_model,
+        eval_accuracy,
+        eval_conf_matrix,
+        eval_class_report,
+        deployment_params
+):
     model_url = os.getenv("MODEL_URL")
 
     if best_model == "trained_model":

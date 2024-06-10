@@ -1,7 +1,7 @@
 from kedro.pipeline import Pipeline, node
 from .nodes import train_autogluon_model, evaluate_autogluon_model, validate_autogluon_model
 
-def create_pipeline(**kwargs):
+def create_pipeline():
     return Pipeline([
         node(
             func=train_autogluon_model,
