@@ -29,3 +29,6 @@ attr = "pj-suml-project.__version__"
 [tool.setuptools.packages.find]
 where = [ "src",]
 namespaces = false
+
+[tool.kedro_telemetry]
+project_id = "c2f0aac149b7439ab267aa0a51ea4d1a"
